@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        background-color: (255,226,218);
+        color: rgb(42, 42, 42);
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .container{
+        width: 400px;
+        background: #fff;
+        box-shadow: 0 20px 40px rgba(0,0,0.1);
+    }
+    table{
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td{
+        font-size: 2em;
+        padding: 0.7em;
+        text-align: center;
+        cursor: default;
+        transition: 0.2s;
+    }
+    td:hover{
+        background-color: rgb(2199,199,199);
+    }
+    input{
+        padding: 16px 10px;
+        width: 95%;
+        border: 0;
+        font-size: 2em;
+        background-color: #333;
+        color: #eee;
+        text-align: right;
+    }
+    .vari{
+        background-color: rgb(70,70,70);
+    }
+    .vari:hover{
+        background-color: #222;
+    }
+    .equalbtn{
+        background-color: rgb(255, 160, 51);
+    }
+</style>
+<body><div class="container">
+
+    <input type="text" id="useinp" placeholder="0" disabled />
+    <input type="text" id="compout" placeholder="0" disabled />
+
+    <table>
+        <tr>
+            <td onclick="calcad('(')">(</td>
+            <td onclick="calcad(')')">)</td>
+            <td onclick="removech()">&it;<-</td>
+            <td onclick="calcad('+')" class="vari">+</td>
+        </tr>
+        <tr>
+            <td onclick="calcad('7')">7</td>
+            <td onclick="calcad('8')">8</td>
+            <td onclick="calcad('9')">9</td>
+            <td onclick="calcad('-')" class="vari">-</td>
+        </tr>
+
+        <tr>
+            <td onclick="calcad('4')">4</td>
+            <td onclick="calcad('5')">5</td>
+            <td onclick="calcad('6')">6</td>
+            <td onclick="calcad('*')" class="vari">*</td>
+        </tr>
+
+        <tr>
+            <td onclick="calcad('1')">1</td>
+            <td onclick="calcad('2')">2</td>
+            <td onclick="calcad('3')">3</td>
+            <td onclick="calcad('/')" class="vari">/</td>
+        </tr>
+
+        <tr>
+            <td onclick="Reset()"><b>C</b></td>
+            <td onclick="calcad('0')">0</td>
+            <td onclick="calcad('.')">.</td>
+            <td onclick="execm()" class="equalbtn">=</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var tbcal = "";
+    let useinp = document.getElementById('useinp');
+    let compinp = document.getElementById('compout');
+
+    function calcad(value){
+        tbcal += value;
+        useinp.value = tbcal;
+    }
+function removech()
+{
+    tbcal = tbcal.substring(0,tbcal.length-1);
+    useinp.value=tbcal;
+}
+    function execm()
+    {
+        if(tbcal.length == 0 || tbcal=="")
+        {
+            alert("Needs a input");
+        return
+        }
+    try{
+        ans = eval(tbcal);
+        compinp.value=ans;
+    }
+    catch(err){
+        alert("Needs a input");
+    }
+    }
+    function Reset()
+    {
+        useinp.value="";
+        compinp.value="";
+        tbcal="";
+    }
+</script>
+
+</body>
+</html>
